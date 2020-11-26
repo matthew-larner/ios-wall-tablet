@@ -15,6 +15,7 @@ class MenuViewController: UIViewController {
     @IBOutlet private weak var usernameTf: UITextField!
     @IBOutlet private weak var passwordTf: UITextField!
     @IBOutlet private weak var ttsTopicTf: UITextField!
+    @IBOutlet private weak var brightnessControlTopicTf: UITextField!
     @IBOutlet private weak var navigateTopicTf: UITextField!
     @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var saveButton: UIButton!
@@ -32,6 +33,7 @@ class MenuViewController: UIViewController {
         passwordTf.text = mqttService.password
         ttsTopicTf.text = mqttService.ttsTopic
         navigateTopicTf.text = mqttService.navigationTopic
+        brightnessControlTopicTf.text = mqttService.brightnessControlTopic
         updateMqttStatus()
         mqttService.connectionStatusChangeBlock =  { [weak self]
             (status) in
@@ -85,7 +87,8 @@ class MenuViewController: UIViewController {
                 guard let host = hostTf.text,
                       let port = portTf.text,
                       let ttsTopic = ttsTopicTf.text,
-                      let navigateTopic = navigateTopicTf.text else {
+                      let navigateTopic = navigateTopicTf.text,
+                      let brightnessTopic = brightnessControlTopicTf.text else {
                     return
                 }
                 
@@ -93,6 +96,7 @@ class MenuViewController: UIViewController {
                 mqttService.port = Int(port)
                 mqttService.ttsTopic = ttsTopic;
                 mqttService.navigationTopic = navigateTopic
+                mqttService.brightnessControlTopic = brightnessTopic
                 mqttService.username = usernameTf.text
                 mqttService.password = passwordTf.text
                 mqttService.connectToServer()
@@ -104,8 +108,15 @@ class MenuViewController: UIViewController {
     }
     
     @IBAction private func didTapSaendTTS() {
-        let message = "{\"message\":\"Hello, it's a test message.\",\"voice\":\"en-GB\",\"volume\":\"0.8\"}"
-        mqttService.publish(message: message)
+        let message = "0.5"
+        guard  let topic = mqttService.navigationTopic else {
+            return
+        }
+        mqttService.publish(message: message, topic: topic)
+    }
+    
+    @IBAction private func onChanged(sender: UISlider) {
+  
     }
     
     func allFieldsValid() -> Bool {
@@ -117,14 +128,4 @@ class MenuViewController: UIViewController {
         }
         return true;
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

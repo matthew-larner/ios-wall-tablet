@@ -16,8 +16,17 @@ class MQTTService {
     var connectionSuccessBlock: ((_ status: Bool) -> ())?
     var connectionStatusChangeBlock: ((_ status: CocoaMQTTConnState) -> ())?
     
-    static let shared = MQTTService()
+    static let shared = MQTTService(debug: false)
 
+    init(debug: Bool) {
+        if debug {
+            UserDefaults.standard.setValue("test.mosquitto.org", forKey: hostKeyId)
+            UserDefaults.standard.setValue(1883, forKey: portKeyId)
+            UserDefaults.standard.setValue("tts_topic", forKey: ttsTopicKeyId)
+            UserDefaults.standard.setValue("nav_topic", forKey: navigateTopicKeyId)
+            UserDefaults.standard.setValue("b_topic", forKey: brightnessControlTopicKeyId)
+        }
+    }
     var host: String? {
         get {
             return UserDefaults.standard.string(forKey: hostKeyId);
@@ -66,6 +75,14 @@ class MQTTService {
         }
     }
     
+    var brightnessControlTopic: String? {
+        get {
+            return UserDefaults.standard.string(forKey: brightnessControlTopicKeyId);
+        } set(val) {
+            UserDefaults.standard.setValue(val, forKey: brightnessControlTopicKeyId)
+        }
+    }
+    
     private let clientID = "CocoaMQTT-Matt-" + String(ProcessInfo().processIdentifier)
     
     private init() { }
@@ -75,7 +92,8 @@ class MQTTService {
         guard let _ = host,
               let _ = port,
               let _ = ttsTopic,
-              let _ = navigationTopic else {
+              let _ = navigationTopic,
+              let _ = brightnessControlTopic else {
             return false
         }
         return true;
@@ -87,11 +105,13 @@ class MQTTService {
                   let port = port else {
                 return
             }
+            
             mqtt = CocoaMQTT(clientID: clientID, host: host, port: UInt16(port))
             mqtt!.username = username
             mqtt!.password = password
             mqtt!.keepAlive = 10
             mqtt!.delegate = self
+            mqtt!.autoReconnect = true
             
             _ = mqtt!.connect()
         }
@@ -99,12 +119,14 @@ class MQTTService {
     
     func subscribeToTopics() {
         guard let ttsTopic = ttsTopic,
-              let navigationTopic = navigationTopic else {
+              let navigationTopic = navigationTopic,
+              let brightnessControlTopic = brightnessControlTopic else {
             return
         }
         
         mqtt?.subscribe(ttsTopic, qos: CocoaMQTTQOS.qos1)
         mqtt?.subscribe(navigationTopic, qos: CocoaMQTTQOS.qos1)
+        mqtt?.subscribe(brightnessControlTopic, qos: CocoaMQTTQOS.qos1)
     }
     
     // MARK: Public Function
@@ -161,13 +183,12 @@ class MQTTService {
         return mqtt.connState
     }
     
-    func publish(message: String) {
-        guard let mqtt = self.mqtt,
-              let ttsTopic = self.ttsTopic else {
+    func publish(message: String, topic: String) {
+        guard let mqtt = self.mqtt else {
             return
         }
         
-        mqtt.publish(ttsTopic, withString: message, qos: .qos1)
+        mqtt.publish(topic, withString: message, qos: .qos1)
     }
 }
 
@@ -221,6 +242,8 @@ extension MQTTService: CocoaMQTTDelegate {
         if let error = err, let errorBlock = self.errorBlock {
             if error.localizedDescription == "Socket closed by remote peer" {
                 connectToServer()
+            } else if error.localizedDescription == "Broken pipe" {
+                // No Operation need since it auto reconnects
             } else {
                 errorBlock(error)
             }

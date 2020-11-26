@@ -25,7 +25,12 @@ class SplitViewController: UISplitViewController, UISplitViewControllerDelegate 
             (status) in
             if (status == true) {
                 DispatchQueue.main.async {
-                    self.hide(.primary)
+                    if #available(iOS 14.0, *) {
+                        self.hide(.primary)
+                    } else {
+                        // Fallback on earlier versions
+                        self.splitViewController?.preferredDisplayMode = .primaryHidden
+                    }
                 }
             }
         }

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OAf-AB-23M">
     <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -23,7 +24,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7Cs-E1-tU1">
-                                <rect key="frame" x="30" y="110" width="260" height="425"/>
+                                <rect key="frame" x="30" y="110" width="260" height="497.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ik5-pl-JIi">
                                         <rect key="frame" x="0.0" y="0.0" width="260" height="62.5"/>
@@ -187,17 +188,44 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Qfk-bB-vfb">
+                                        <rect key="frame" x="0.0" y="435" width="260" height="62.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lFF-AX-ycG">
+                                                <rect key="frame" x="0.0" y="0.0" width="260" height="20.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Brightness Control Topic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVA-aJ-T86">
+                                                        <rect key="frame" x="0.0" y="0.0" width="187" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vap-1o-DcN">
+                                                        <rect key="frame" x="195" y="0.0" width="65" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" systemColor="systemRedColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dx3-en-jZX">
+                                                <rect key="frame" x="0.0" y="28.5" width="260" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YFq-RQ-wAl">
-                                <rect key="frame" x="97.5" y="615" width="125" height="30"/>
+                                <rect key="frame" x="97.5" y="687.5" width="125" height="30"/>
                                 <state key="normal" title="Save and Connect"/>
                                 <connections>
                                     <action selector="didTapSave" destination="ejR-dp-S3s" eventType="touchUpInside" id="wF5-XA-ikF"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RK4-q6-lgV">
-                                <rect key="frame" x="30" y="558" width="167" height="20.5"/>
+                                <rect key="frame" x="30" y="630.5" width="167" height="20.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Adj-y0-lIT">
                                         <rect key="frame" x="0.0" y="0.0" width="53.5" height="20.5"/>
@@ -214,13 +242,20 @@
                                 </subviews>
                             </stackView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pt8-pl-uZo">
-                                <rect key="frame" x="106" y="690" width="108" height="30"/>
+                                <rect key="frame" x="106" y="752" width="108" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Send TTS Topic"/>
                                 <connections>
                                     <action selector="didTapSaendTTS" destination="ejR-dp-S3s" eventType="touchUpInside" id="W3d-Bb-efI"/>
                                 </connections>
                             </button>
+                            <slider hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="K0P-0R-hRN">
+                                <rect key="frame" x="101" y="790" width="118" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="onChangedWithSender:" destination="ejR-dp-S3s" eventType="valueChanged" id="5NS-3W-MBB"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qV4-0O-kaW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -239,6 +274,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="J4L-kR-Ljr"/>
                     <connections>
+                        <outlet property="brightnessControlTopicTf" destination="Dx3-en-jZX" id="z0X-FP-ttN"/>
                         <outlet property="hostTf" destination="6rg-xr-1DN" id="GaW-q1-9Sk"/>
                         <outlet property="navigateTopicTf" destination="eEd-82-ff8" id="QdN-Eh-QeD"/>
                         <outlet property="passwordTf" destination="xDt-ZG-EFz" id="spP-P7-eBa"/>

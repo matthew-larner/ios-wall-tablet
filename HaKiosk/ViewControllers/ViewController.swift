@@ -12,7 +12,7 @@ import AVKit
 class ViewController: UIViewController {
     var activityIndicatorView = UIActivityIndicatorView()
     var url: String?
-    
+   
     private lazy var webView: WKWebView = {
         let webConfiguration = WKWebViewConfiguration()
         let webView = WKWebView(frame: .zero, configuration: webConfiguration)
@@ -109,7 +109,8 @@ class ViewController: UIViewController {
         print("Topic: \(topic)" )
         print("Message: \(content)" )
         guard let navigateTopic = MQTTService.shared.navigationTopic,
-              let ttsTopic = MQTTService.shared.ttsTopic else {
+              let ttsTopic = MQTTService.shared.ttsTopic,
+              let brightnessTopic = MQTTService.shared.brightnessControlTopic else {
             return
         }
         
@@ -134,13 +135,13 @@ class ViewController: UIViewController {
                 print(error)
                 showAlertView(title: "ERROR:: TTS Topic Payload Bad JSON", message: error.localizedDescription)
             }
+        } else if topic == brightnessTopic {
+            UIScreen.main.brightness = CGFloat(Double(content) ?? 1) 
         }
     }
     
     @objc func applicationDidBecomeActive() {
-//        if MQTTService.shared.status() != .connected {
-//            MQTTService.shared.connectToServer()
-//        }
+
     }
     
     @objc func forwardAction() {
