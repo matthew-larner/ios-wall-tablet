@@ -70,13 +70,13 @@ class ViewController: UIViewController {
             
         NSLayoutConstraint.activate([
             webView.topAnchor
-                    .constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+                    .constraint(equalTo: self.view.topAnchor),
             webView.leftAnchor
-                    .constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor),
+                    .constraint(equalTo: self.view.leftAnchor),
             webView.bottomAnchor
-                    .constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+                    .constraint(equalTo: self.view.bottomAnchor),
             webView.rightAnchor
-                    .constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor)
+                    .constraint(equalTo: self.view.rightAnchor)
         ])
       
         view.addSubview(activityIndicatorView);
