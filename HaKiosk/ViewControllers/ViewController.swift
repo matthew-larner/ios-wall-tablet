@@ -101,13 +101,12 @@ class ViewController: UIViewController {
         utterance.volume = volume
         synthesizer.speak(utterance)
     }
+    
     // MARK: Actions
     @objc func receivedMessage(notification: NSNotification) {
         let userInfo = notification.userInfo as! [String: AnyObject]
         let content = userInfo["message"] as! String
         let topic = userInfo["topic"] as! String
-        print("Topic: \(topic)" )
-        print("Message: \(content)" )
         guard let navigateTopic = MQTTService.shared.navigationTopic,
               let ttsTopic = MQTTService.shared.ttsTopic,
               let brightnessTopic = MQTTService.shared.brightnessControlTopic else {
@@ -132,7 +131,6 @@ class ViewController: UIViewController {
                     showAlertView(title: "ERROR:: TTS Topic Payload Bad JSON", message: content)
                 }
             } catch let error as NSError {
-                print(error)
                 showAlertView(title: "ERROR:: TTS Topic Payload Bad JSON", message: error.localizedDescription)
             }
         } else if topic == brightnessTopic {
