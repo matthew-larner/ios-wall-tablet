@@ -25,6 +25,7 @@ class MQTTService {
             UserDefaults.standard.setValue("tts_topic", forKey: ttsTopicKeyId)
             UserDefaults.standard.setValue("nav_topic", forKey: navigateTopicKeyId)
             UserDefaults.standard.setValue("b_topic", forKey: brightnessControlTopicKeyId)
+            UserDefaults.standard.setValue("motion_topic", forKey: motionDetectionTopicKeyId)
         }
     }
     var host: String? {
@@ -83,6 +84,14 @@ class MQTTService {
         }
     }
     
+    var motionDetectionTopic: String? {
+        get {
+            return UserDefaults.standard.string(forKey: motionDetectionTopicKeyId);
+        } set(val) {
+            UserDefaults.standard.setValue(val, forKey: motionDetectionTopicKeyId)
+        }
+    }
+    
     private let clientID = "CocoaMQTT-Matt-" + String(ProcessInfo().processIdentifier)
     
     private init() { }
@@ -93,7 +102,8 @@ class MQTTService {
               let _ = port,
               let _ = ttsTopic,
               let _ = navigationTopic,
-              let _ = brightnessControlTopic else {
+              let _ = brightnessControlTopic,
+              let _ = motionDetectionTopic else {
             return false
         }
         return true;

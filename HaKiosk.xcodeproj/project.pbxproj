@@ -12,7 +12,7 @@
 		AC63FF22256927E3000FEEE4 /* UIVIewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC63FF21256927E3000FEEE4 /* UIVIewController+Extensions.swift */; };
 		AC73A7402568DA76007B33F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC73A73F2568DA76007B33F6 /* AppDelegate.swift */; };
 		AC73A7422568DA76007B33F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC73A7412568DA76007B33F6 /* SceneDelegate.swift */; };
-		AC73A7442568DA76007B33F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC73A7432568DA76007B33F6 /* ViewController.swift */; };
+		AC73A7442568DA76007B33F6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC73A7432568DA76007B33F6 /* HomeViewController.swift */; };
 		AC73A7472568DA76007B33F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC73A7452568DA76007B33F6 /* Main.storyboard */; };
 		AC73A7492568DA7C007B33F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC73A7482568DA7C007B33F6 /* Assets.xcassets */; };
 		AC73A74C2568DA7C007B33F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC73A74A2568DA7C007B33F6 /* LaunchScreen.storyboard */; };
@@ -22,6 +22,9 @@
 		AC73A78A2568F9C7007B33F6 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC73A7892568F9C7007B33F6 /* MenuViewController.swift */; };
 		AC73A7B625691284007B33F6 /* MQTTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC73A7B525691284007B33F6 /* MQTTService.swift */; };
 		AC73A7BF25691458007B33F6 /* Contants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC73A7BE25691458007B33F6 /* Contants.swift */; };
+		AC9B3A322587396F0016129A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9B3A312587396F0016129A /* HomeViewModel.swift */; };
+		ACC2046525871E450018DE4C /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACC2045925871E1A0018DE4C /* GPUImage.framework */; };
+		ACC2046725871E600018DE4C /* GPUImage.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = ACC2045925871E1A0018DE4C /* GPUImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B47660BBB3A21740BB9BD78C /* Pods_HaKioskTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD09FABEDAD67F78DC294CDC /* Pods_HaKioskTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +43,55 @@
 			remoteGlobalIDString = AC73A73B2568DA76007B33F6;
 			remoteInfo = HaKiosk;
 		};
+		ACC2045425871E1A0018DE4C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ACC2044D25871E190018DE4C /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC6E7CAB1C39A9D8006DF678;
+			remoteInfo = GPUImage_macOS;
+		};
+		ACC2045625871E1A0018DE4C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ACC2044D25871E190018DE4C /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC6E7CB51C39A9D8006DF678;
+			remoteInfo = GPUImageTests_macOS;
+		};
+		ACC2045825871E1A0018DE4C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ACC2044D25871E190018DE4C /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC9E34E91E524A2200B8604F;
+			remoteInfo = GPUImage_iOS;
+		};
+		ACC2045A25871E1A0018DE4C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ACC2044D25871E190018DE4C /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC9E34F11E524A2200B8604F;
+			remoteInfo = GPUImageTests_iOS;
+		};
+		ACC2046325871E370018DE4C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ACC2044D25871E190018DE4C /* GPUImage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BC9E34E81E524A2200B8604F;
+			remoteInfo = GPUImage_iOS;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		ACC2046625871E520018DE4C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				ACC2046725871E600018DE4C /* GPUImage.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0347E9C42EBF15039D639A63 /* Pods_HaKiosk_HaKioskUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HaKiosk_HaKioskUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,7 +103,7 @@
 		AC73A73C2568DA76007B33F6 /* HaKiosk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HaKiosk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC73A73F2568DA76007B33F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC73A7412568DA76007B33F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AC73A7432568DA76007B33F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AC73A7432568DA76007B33F6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		AC73A7462568DA76007B33F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AC73A7482568DA7C007B33F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC73A74B2568DA7C007B33F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -67,6 +118,8 @@
 		AC73A7892568F9C7007B33F6 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		AC73A7B525691284007B33F6 /* MQTTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTService.swift; sourceTree = "<group>"; };
 		AC73A7BE25691458007B33F6 /* Contants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contants.swift; sourceTree = "<group>"; };
+		AC9B3A312587396F0016129A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		ACC2044D25871E190018DE4C /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = GPUImage2/framework/GPUImage.xcodeproj; sourceTree = "<group>"; };
 		CD09FABEDAD67F78DC294CDC /* Pods_HaKioskTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HaKioskTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7362563BC335A2DF4B1C3E3 /* Pods_HaKiosk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HaKiosk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF0527F4042FA67D1AA67FAD /* Pods-HaKioskTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HaKioskTests.release.xcconfig"; path = "Target Support Files/Pods-HaKioskTests/Pods-HaKioskTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -78,6 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACC2046525871E450018DE4C /* GPUImage.framework in Frameworks */,
 				2B60DB333D2E6919FFCC0E04 /* Pods_HaKiosk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -157,6 +211,8 @@
 		AC73A73E2568DA76007B33F6 /* HaKiosk */ = {
 			isa = PBXGroup;
 			children = (
+				AC9B3A2D258739560016129A /* ViewModels */,
+				ACC2044025871D5F0018DE4C /* ThirdPartyLib */,
 				AC63FF20256927C6000FEEE4 /* Extensions */,
 				AC73A7BD2569143E007B33F6 /* Contants */,
 				AC73A7AE25691242007B33F6 /* ViewControllers */,
@@ -200,7 +256,7 @@
 		AC73A7AE25691242007B33F6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				AC73A7432568DA76007B33F6 /* ViewController.swift */,
+				AC73A7432568DA76007B33F6 /* HomeViewController.swift */,
 				AC73A7842568F8AD007B33F6 /* SplitViewController.swift */,
 				AC73A7892568F9C7007B33F6 /* MenuViewController.swift */,
 			);
@@ -215,6 +271,33 @@
 			path = Contants;
 			sourceTree = "<group>";
 		};
+		AC9B3A2D258739560016129A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				AC9B3A312587396F0016129A /* HomeViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		ACC2044025871D5F0018DE4C /* ThirdPartyLib */ = {
+			isa = PBXGroup;
+			children = (
+				ACC2044D25871E190018DE4C /* GPUImage.xcodeproj */,
+			);
+			path = ThirdPartyLib;
+			sourceTree = "<group>";
+		};
+		ACC2044E25871E190018DE4C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ACC2045525871E1A0018DE4C /* GPUImage.framework */,
+				ACC2045725871E1A0018DE4C /* GPUImageTests_macOS.xctest */,
+				ACC2045925871E1A0018DE4C /* GPUImage.framework */,
+				ACC2045B25871E1A0018DE4C /* GPUImageTests_iOS.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -227,10 +310,12 @@
 				AC73A7392568DA76007B33F6 /* Frameworks */,
 				AC73A73A2568DA76007B33F6 /* Resources */,
 				F5B95CEACB4A03EB15685319 /* [CP] Embed Pods Frameworks */,
+				ACC2046625871E520018DE4C /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				ACC2046425871E370018DE4C /* PBXTargetDependency */,
 			);
 			name = HaKiosk;
 			productName = HaKiosk;
@@ -309,6 +394,12 @@
 			mainGroup = AC73A7332568DA76007B33F6;
 			productRefGroup = AC73A73D2568DA76007B33F6 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = ACC2044E25871E190018DE4C /* Products */;
+					ProjectRef = ACC2044D25871E190018DE4C /* GPUImage.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				AC73A73B2568DA76007B33F6 /* HaKiosk */,
@@ -317,6 +408,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		ACC2045525871E1A0018DE4C /* GPUImage.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GPUImage.framework;
+			remoteRef = ACC2045425871E1A0018DE4C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		ACC2045725871E1A0018DE4C /* GPUImageTests_macOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = GPUImageTests_macOS.xctest;
+			remoteRef = ACC2045625871E1A0018DE4C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		ACC2045925871E1A0018DE4C /* GPUImage.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GPUImage.framework;
+			remoteRef = ACC2045825871E1A0018DE4C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		ACC2045B25871E1A0018DE4C /* GPUImageTests_iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = GPUImageTests_iOS.xctest;
+			remoteRef = ACC2045A25871E1A0018DE4C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		AC73A73A2568DA76007B33F6 /* Resources */ = {
@@ -453,9 +575,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC73A7442568DA76007B33F6 /* ViewController.swift in Sources */,
+				AC73A7442568DA76007B33F6 /* HomeViewController.swift in Sources */,
 				AC73A78A2568F9C7007B33F6 /* MenuViewController.swift in Sources */,
 				AC73A7402568DA76007B33F6 /* AppDelegate.swift in Sources */,
+				AC9B3A322587396F0016129A /* HomeViewModel.swift in Sources */,
 				AC73A7BF25691458007B33F6 /* Contants.swift in Sources */,
 				AC63FF22256927E3000FEEE4 /* UIVIewController+Extensions.swift in Sources */,
 				AC73A7B625691284007B33F6 /* MQTTService.swift in Sources */,
@@ -492,6 +615,11 @@
 			isa = PBXTargetDependency;
 			target = AC73A73B2568DA76007B33F6 /* HaKiosk */;
 			targetProxy = AC73A75E2568DA7D007B33F6 /* PBXContainerItemProxy */;
+		};
+		ACC2046425871E370018DE4C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GPUImage_iOS;
+			targetProxy = ACC2046325871E370018DE4C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -652,7 +780,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "HAKiosk AdHoc";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -677,7 +805,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "HAKiosk AdHoc";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

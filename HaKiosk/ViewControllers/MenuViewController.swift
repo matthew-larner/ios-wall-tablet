@@ -17,11 +17,12 @@ class MenuViewController: UIViewController {
     @IBOutlet private weak var ttsTopicTf: UITextField!
     @IBOutlet private weak var brightnessControlTopicTf: UITextField!
     @IBOutlet private weak var navigateTopicTf: UITextField!
+    @IBOutlet private weak var motionDetectionTopicTf: UITextField!
     @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var saveButton: UIButton!
     
     let mqttService = MQTTService.shared
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -34,6 +35,7 @@ class MenuViewController: UIViewController {
         ttsTopicTf.text = mqttService.ttsTopic
         navigateTopicTf.text = mqttService.navigationTopic
         brightnessControlTopicTf.text = mqttService.brightnessControlTopic
+        motionDetectionTopicTf.text = mqttService.motionDetectionTopic
         updateMqttStatus()
         mqttService.connectionStatusChangeBlock =  { [weak self]
             (status) in
@@ -88,7 +90,8 @@ class MenuViewController: UIViewController {
                       let port = portTf.text,
                       let ttsTopic = ttsTopicTf.text,
                       let navigateTopic = navigateTopicTf.text,
-                      let brightnessTopic = brightnessControlTopicTf.text else {
+                      let brightnessTopic = brightnessControlTopicTf.text,
+                      let motionDetectionTopic = motionDetectionTopicTf.text else {
                     return
                 }
                 
@@ -97,6 +100,7 @@ class MenuViewController: UIViewController {
                 mqttService.ttsTopic = ttsTopic;
                 mqttService.navigationTopic = navigateTopic
                 mqttService.brightnessControlTopic = brightnessTopic
+                mqttService.motionDetectionTopic = motionDetectionTopic
                 mqttService.username = usernameTf.text
                 mqttService.password = passwordTf.text
                 mqttService.connectToServer()
@@ -123,7 +127,8 @@ class MenuViewController: UIViewController {
         if hostTf.text!.isEmpty ||
             portTf.text!.isEmpty ||
             ttsTopicTf.text!.isEmpty ||
-            navigateTopicTf.text!.isEmpty {
+            navigateTopicTf.text!.isEmpty ||
+            motionDetectionTopicTf.text!.isEmpty {
             return false
         }
         return true;

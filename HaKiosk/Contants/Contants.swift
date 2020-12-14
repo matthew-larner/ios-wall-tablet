@@ -14,5 +14,6 @@ let passwordKeyId = "PASSWORD"
 let ttsTopicKeyId = "TTS_TOPIC"
 let navigateTopicKeyId = "NAVIGATE_TOPIC"
 let brightnessControlTopicKeyId = "BRIGHTNESS_CONTROL_TOPIC"
+let motionDetectionTopicKeyId = "MOTION_DETECTION_TOPIC"
 let mqttMessageNotificationName = "MQTTMessageNotification"
 
