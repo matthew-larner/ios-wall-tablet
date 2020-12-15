@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2B60DB333D2E6919FFCC0E04 /* Pods_HaKiosk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7362563BC335A2DF4B1C3E3 /* Pods_HaKiosk.framework */; };
 		30FD6E10DDF4AF635DBFAE53 /* Pods_HaKiosk_HaKioskUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0347E9C42EBF15039D639A63 /* Pods_HaKiosk_HaKioskUITests.framework */; };
+		AC004BA225885E3500FB232B /* GPUImage.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC004B9925885E2500FB232B /* GPUImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AC004BA725885E4100FB232B /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC004B9925885E2500FB232B /* GPUImage.framework */; };
 		AC63FF22256927E3000FEEE4 /* UIVIewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC63FF21256927E3000FEEE4 /* UIVIewController+Extensions.swift */; };
 		AC73A7402568DA76007B33F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC73A73F2568DA76007B33F6 /* AppDelegate.swift */; };
 		AC73A7422568DA76007B33F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC73A7412568DA76007B33F6 /* SceneDelegate.swift */; };
@@ -23,12 +25,45 @@
 		AC73A7B625691284007B33F6 /* MQTTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC73A7B525691284007B33F6 /* MQTTService.swift */; };
 		AC73A7BF25691458007B33F6 /* Contants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC73A7BE25691458007B33F6 /* Contants.swift */; };
 		AC9B3A322587396F0016129A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9B3A312587396F0016129A /* HomeViewModel.swift */; };
-		ACC2046525871E450018DE4C /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACC2045925871E1A0018DE4C /* GPUImage.framework */; };
-		ACC2046725871E600018DE4C /* GPUImage.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = ACC2045925871E1A0018DE4C /* GPUImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B47660BBB3A21740BB9BD78C /* Pods_HaKioskTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD09FABEDAD67F78DC294CDC /* Pods_HaKioskTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		AC004B9425885E2500FB232B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AC004B8D25885E2500FB232B /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC6E7CAB1C39A9D8006DF678;
+			remoteInfo = GPUImage_macOS;
+		};
+		AC004B9625885E2500FB232B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AC004B8D25885E2500FB232B /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC6E7CB51C39A9D8006DF678;
+			remoteInfo = GPUImageTests_macOS;
+		};
+		AC004B9825885E2500FB232B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AC004B8D25885E2500FB232B /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC9E34E91E524A2200B8604F;
+			remoteInfo = GPUImage_iOS;
+		};
+		AC004B9A25885E2500FB232B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AC004B8D25885E2500FB232B /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC9E34F11E524A2200B8604F;
+			remoteInfo = GPUImageTests_iOS;
+		};
+		AC004BA825885E4A00FB232B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AC004B8D25885E2500FB232B /* GPUImage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BC9E34E81E524A2200B8604F;
+			remoteInfo = GPUImage_iOS;
+		};
 		AC73A7532568DA7D007B33F6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AC73A7342568DA76007B33F6 /* Project object */;
@@ -43,41 +78,6 @@
 			remoteGlobalIDString = AC73A73B2568DA76007B33F6;
 			remoteInfo = HaKiosk;
 		};
-		ACC2045425871E1A0018DE4C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = ACC2044D25871E190018DE4C /* GPUImage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BC6E7CAB1C39A9D8006DF678;
-			remoteInfo = GPUImage_macOS;
-		};
-		ACC2045625871E1A0018DE4C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = ACC2044D25871E190018DE4C /* GPUImage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BC6E7CB51C39A9D8006DF678;
-			remoteInfo = GPUImageTests_macOS;
-		};
-		ACC2045825871E1A0018DE4C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = ACC2044D25871E190018DE4C /* GPUImage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BC9E34E91E524A2200B8604F;
-			remoteInfo = GPUImage_iOS;
-		};
-		ACC2045A25871E1A0018DE4C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = ACC2044D25871E190018DE4C /* GPUImage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BC9E34F11E524A2200B8604F;
-			remoteInfo = GPUImageTests_iOS;
-		};
-		ACC2046325871E370018DE4C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = ACC2044D25871E190018DE4C /* GPUImage.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = BC9E34E81E524A2200B8604F;
-			remoteInfo = GPUImage_iOS;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -87,7 +87,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				ACC2046725871E600018DE4C /* GPUImage.framework in CopyFiles */,
+				AC004BA225885E3500FB232B /* GPUImage.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +99,7 @@
 		2DB2D0B47DB36F4A3A1B09A2 /* Pods-HaKiosk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HaKiosk.release.xcconfig"; path = "Target Support Files/Pods-HaKiosk/Pods-HaKiosk.release.xcconfig"; sourceTree = "<group>"; };
 		40433021AC804C806B50D221 /* Pods-HaKiosk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HaKiosk.debug.xcconfig"; path = "Target Support Files/Pods-HaKiosk/Pods-HaKiosk.debug.xcconfig"; sourceTree = "<group>"; };
 		7A6A5AFBD6DEC7270E0C39B0 /* Pods-HaKiosk-HaKioskUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HaKiosk-HaKioskUITests.debug.xcconfig"; path = "Target Support Files/Pods-HaKiosk-HaKioskUITests/Pods-HaKiosk-HaKioskUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		AC004B8D25885E2500FB232B /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = ThirdPartyLib/GPUImage2/framework/GPUImage.xcodeproj; sourceTree = SOURCE_ROOT; };
 		AC63FF21256927E3000FEEE4 /* UIVIewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+Extensions.swift"; sourceTree = "<group>"; };
 		AC73A73C2568DA76007B33F6 /* HaKiosk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HaKiosk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC73A73F2568DA76007B33F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,7 +120,6 @@
 		AC73A7B525691284007B33F6 /* MQTTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTService.swift; sourceTree = "<group>"; };
 		AC73A7BE25691458007B33F6 /* Contants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contants.swift; sourceTree = "<group>"; };
 		AC9B3A312587396F0016129A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		ACC2044D25871E190018DE4C /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = GPUImage2/framework/GPUImage.xcodeproj; sourceTree = "<group>"; };
 		CD09FABEDAD67F78DC294CDC /* Pods_HaKioskTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HaKioskTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7362563BC335A2DF4B1C3E3 /* Pods_HaKiosk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HaKiosk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF0527F4042FA67D1AA67FAD /* Pods-HaKioskTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HaKioskTests.release.xcconfig"; path = "Target Support Files/Pods-HaKioskTests/Pods-HaKioskTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -131,7 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACC2046525871E450018DE4C /* GPUImage.framework in Frameworks */,
+				AC004BA725885E4100FB232B /* GPUImage.framework in Frameworks */,
 				2B60DB333D2E6919FFCC0E04 /* Pods_HaKiosk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -178,6 +178,25 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		AC004B8C25885DE600FB232B /* ThirdPartyLib */ = {
+			isa = PBXGroup;
+			children = (
+				AC004B8D25885E2500FB232B /* GPUImage.xcodeproj */,
+			);
+			path = ThirdPartyLib;
+			sourceTree = "<group>";
+		};
+		AC004B8E25885E2500FB232B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AC004B9525885E2500FB232B /* GPUImage.framework */,
+				AC004B9725885E2500FB232B /* GPUImageTests_macOS.xctest */,
+				AC004B9925885E2500FB232B /* GPUImage.framework */,
+				AC004B9B25885E2500FB232B /* GPUImageTests_iOS.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		AC63FF20256927C6000FEEE4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,8 +230,8 @@
 		AC73A73E2568DA76007B33F6 /* HaKiosk */ = {
 			isa = PBXGroup;
 			children = (
+				AC004B8C25885DE600FB232B /* ThirdPartyLib */,
 				AC9B3A2D258739560016129A /* ViewModels */,
-				ACC2044025871D5F0018DE4C /* ThirdPartyLib */,
 				AC63FF20256927C6000FEEE4 /* Extensions */,
 				AC73A7BD2569143E007B33F6 /* Contants */,
 				AC73A7AE25691242007B33F6 /* ViewControllers */,
@@ -279,25 +298,6 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		ACC2044025871D5F0018DE4C /* ThirdPartyLib */ = {
-			isa = PBXGroup;
-			children = (
-				ACC2044D25871E190018DE4C /* GPUImage.xcodeproj */,
-			);
-			path = ThirdPartyLib;
-			sourceTree = "<group>";
-		};
-		ACC2044E25871E190018DE4C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				ACC2045525871E1A0018DE4C /* GPUImage.framework */,
-				ACC2045725871E1A0018DE4C /* GPUImageTests_macOS.xctest */,
-				ACC2045925871E1A0018DE4C /* GPUImage.framework */,
-				ACC2045B25871E1A0018DE4C /* GPUImageTests_iOS.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -315,7 +315,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				ACC2046425871E370018DE4C /* PBXTargetDependency */,
+				AC004BA925885E4A00FB232B /* PBXTargetDependency */,
 			);
 			name = HaKiosk;
 			productName = HaKiosk;
@@ -396,8 +396,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = ACC2044E25871E190018DE4C /* Products */;
-					ProjectRef = ACC2044D25871E190018DE4C /* GPUImage.xcodeproj */;
+					ProductGroup = AC004B8E25885E2500FB232B /* Products */;
+					ProjectRef = AC004B8D25885E2500FB232B /* GPUImage.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -410,32 +410,32 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		ACC2045525871E1A0018DE4C /* GPUImage.framework */ = {
+		AC004B9525885E2500FB232B /* GPUImage.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = GPUImage.framework;
-			remoteRef = ACC2045425871E1A0018DE4C /* PBXContainerItemProxy */;
+			remoteRef = AC004B9425885E2500FB232B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		ACC2045725871E1A0018DE4C /* GPUImageTests_macOS.xctest */ = {
+		AC004B9725885E2500FB232B /* GPUImageTests_macOS.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = GPUImageTests_macOS.xctest;
-			remoteRef = ACC2045625871E1A0018DE4C /* PBXContainerItemProxy */;
+			remoteRef = AC004B9625885E2500FB232B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		ACC2045925871E1A0018DE4C /* GPUImage.framework */ = {
+		AC004B9925885E2500FB232B /* GPUImage.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = GPUImage.framework;
-			remoteRef = ACC2045825871E1A0018DE4C /* PBXContainerItemProxy */;
+			remoteRef = AC004B9825885E2500FB232B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		ACC2045B25871E1A0018DE4C /* GPUImageTests_iOS.xctest */ = {
+		AC004B9B25885E2500FB232B /* GPUImageTests_iOS.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = GPUImageTests_iOS.xctest;
-			remoteRef = ACC2045A25871E1A0018DE4C /* PBXContainerItemProxy */;
+			remoteRef = AC004B9A25885E2500FB232B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -606,6 +606,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		AC004BA925885E4A00FB232B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GPUImage_iOS;
+			targetProxy = AC004BA825885E4A00FB232B /* PBXContainerItemProxy */;
+		};
 		AC73A7542568DA7D007B33F6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = AC73A73B2568DA76007B33F6 /* HaKiosk */;
@@ -615,11 +620,6 @@
 			isa = PBXTargetDependency;
 			target = AC73A73B2568DA76007B33F6 /* HaKiosk */;
 			targetProxy = AC73A75E2568DA7D007B33F6 /* PBXContainerItemProxy */;
-		};
-		ACC2046425871E370018DE4C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GPUImage_iOS;
-			targetProxy = ACC2046325871E370018DE4C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
