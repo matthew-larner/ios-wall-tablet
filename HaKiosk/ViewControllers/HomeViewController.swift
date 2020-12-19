@@ -45,10 +45,15 @@ class HomeViewController: UIViewController {
     
     // MARK: Private Functions
     private func initialiseGpuImageMotionDetection() {
+        
+        #if TARGET_IPHONE_SIMULATOR
+        
+        #elseif TARGET_OS_IPHONE
         DispatchQueue.main.async {
             do {
                 let camera = try Camera(sessionPreset:.vga640x480, location:.frontFacing)
                 let filter = MotionDetector()
+                filter.lowPassStrength = 1.0
                 camera --> filter --> self.motionRenderView
                 camera.startCapture()
                 filter.motionDetectedCallback = { (s, f) in
@@ -58,6 +63,9 @@ class HomeViewController: UIViewController {
                 fatalError("Could not initialize rendering pipeline: \(error)")
             }
         }
+        #else
+        #endif
+        
     }
     
     private func addNotificationObservers() {

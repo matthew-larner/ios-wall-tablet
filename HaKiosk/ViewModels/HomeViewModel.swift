@@ -42,7 +42,8 @@ class HomeViewModel {
     func recievedMqttTopic(topic: String, message: String) {
         guard let navigateTopic = MQTTService.shared.navigationTopic,
               let ttsTopic = MQTTService.shared.ttsTopic,
-              let brightnessTopic = MQTTService.shared.brightnessControlTopic else {
+              let brightnessTopic = MQTTService.shared.brightnessControlTopic,
+              let userInterfaceStyleTopic = MQTTService.shared.userInterfaceStyleTopic else {
             return
         }
         
@@ -63,6 +64,11 @@ class HomeViewModel {
             }
         } else if topic == brightnessTopic {
             UIScreen.main.brightness = CGFloat(Double(message) ?? 1)
+        } else if topic == userInterfaceStyleTopic {
+            let isDarkMode = message == "dark"
+            UIApplication.shared.connectedScenes.forEach { (scene: UIScene) in
+                (scene.delegate as? SceneDelegate)?.window?.overrideUserInterfaceStyle =  isDarkMode ? .dark : .light  //Just this one works on iPhone.
+            }
         }
     }
     

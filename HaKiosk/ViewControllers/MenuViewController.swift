@@ -18,6 +18,7 @@ class MenuViewController: UIViewController {
     @IBOutlet private weak var brightnessControlTopicTf: UITextField!
     @IBOutlet private weak var navigateTopicTf: UITextField!
     @IBOutlet private weak var motionDetectionTopicTf: UITextField!
+    @IBOutlet private weak var userInterfaceStyleTopicTf: UITextField!
     @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var saveButton: UIButton!
     
@@ -36,6 +37,7 @@ class MenuViewController: UIViewController {
         navigateTopicTf.text = mqttService.navigationTopic
         brightnessControlTopicTf.text = mqttService.brightnessControlTopic
         motionDetectionTopicTf.text = mqttService.motionDetectionTopic
+        userInterfaceStyleTopicTf.text = mqttService.userInterfaceStyleTopic
         updateMqttStatus()
         mqttService.connectionStatusChangeBlock =  { [weak self]
             (status) in
@@ -91,7 +93,8 @@ class MenuViewController: UIViewController {
                       let ttsTopic = ttsTopicTf.text,
                       let navigateTopic = navigateTopicTf.text,
                       let brightnessTopic = brightnessControlTopicTf.text,
-                      let motionDetectionTopic = motionDetectionTopicTf.text else {
+                      let motionDetectionTopic = motionDetectionTopicTf.text,
+                      let userInterfaceStyleTopic = userInterfaceStyleTopicTf.text else {
                     return
                 }
                 
@@ -101,6 +104,7 @@ class MenuViewController: UIViewController {
                 mqttService.navigationTopic = navigateTopic
                 mqttService.brightnessControlTopic = brightnessTopic
                 mqttService.motionDetectionTopic = motionDetectionTopic
+                mqttService.userInterfaceStyleTopic = userInterfaceStyleTopic
                 mqttService.username = usernameTf.text
                 mqttService.password = passwordTf.text
                 mqttService.connectToServer()
@@ -111,24 +115,13 @@ class MenuViewController: UIViewController {
         }
     }
     
-    @IBAction private func didTapSaendTTS() {
-        let message = "0.5"
-        guard  let topic = mqttService.navigationTopic else {
-            return
-        }
-        mqttService.publish(message: message, topic: topic)
-    }
-    
-    @IBAction private func onChanged(sender: UISlider) {
-  
-    }
-    
     func allFieldsValid() -> Bool {
         if hostTf.text!.isEmpty ||
             portTf.text!.isEmpty ||
             ttsTopicTf.text!.isEmpty ||
             navigateTopicTf.text!.isEmpty ||
-            motionDetectionTopicTf.text!.isEmpty {
+            motionDetectionTopicTf.text!.isEmpty ||
+            userInterfaceStyleTopicTf.text!.isEmpty {
             return false
         }
         return true;

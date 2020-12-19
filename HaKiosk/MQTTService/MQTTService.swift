@@ -26,6 +26,7 @@ class MQTTService {
             UserDefaults.standard.setValue("nav_topic", forKey: navigateTopicKeyId)
             UserDefaults.standard.setValue("b_topic", forKey: brightnessControlTopicKeyId)
             UserDefaults.standard.setValue("motion_topic", forKey: motionDetectionTopicKeyId)
+            UserDefaults.standard.setValue("ui_topic", forKey: userInterfaceStyleTopicKeyId)
         }
     }
     var host: String? {
@@ -92,6 +93,14 @@ class MQTTService {
         }
     }
     
+    var userInterfaceStyleTopic: String? {
+        get {
+            return UserDefaults.standard.string(forKey: userInterfaceStyleTopicKeyId);
+        } set(val) {
+            UserDefaults.standard.setValue(val, forKey: userInterfaceStyleTopicKeyId)
+        }
+    }
+    
     private let clientID = "CocoaMQTT-Matt-" + String(ProcessInfo().processIdentifier)
     
     private init() { }
@@ -103,7 +112,8 @@ class MQTTService {
               let _ = ttsTopic,
               let _ = navigationTopic,
               let _ = brightnessControlTopic,
-              let _ = motionDetectionTopic else {
+              let _ = motionDetectionTopic,
+              let _ = userInterfaceStyleTopic else {
             return false
         }
         return true;
@@ -130,13 +140,15 @@ class MQTTService {
     func subscribeToTopics() {
         guard let ttsTopic = ttsTopic,
               let navigationTopic = navigationTopic,
-              let brightnessControlTopic = brightnessControlTopic else {
+              let brightnessControlTopic = brightnessControlTopic,
+              let userInterfaceStyleTopic = userInterfaceStyleTopic else {
             return
         }
         
         mqtt?.subscribe(ttsTopic, qos: CocoaMQTTQOS.qos1)
         mqtt?.subscribe(navigationTopic, qos: CocoaMQTTQOS.qos1)
         mqtt?.subscribe(brightnessControlTopic, qos: CocoaMQTTQOS.qos1)
+        mqtt?.subscribe(userInterfaceStyleTopic, qos: CocoaMQTTQOS.qos1)
     }
     
     // MARK: Public Function
