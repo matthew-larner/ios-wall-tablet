@@ -19,6 +19,7 @@ class MenuViewController: UIViewController {
     @IBOutlet private weak var navigateTopicTf: UITextField!
     @IBOutlet private weak var motionDetectionTopicTf: UITextField!
     @IBOutlet private weak var userInterfaceStyleTopicTf: UITextField!
+    @IBOutlet private weak var systemSoundTopicTf: UITextField!
     @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var saveButton: UIButton!
     
@@ -38,6 +39,7 @@ class MenuViewController: UIViewController {
         brightnessControlTopicTf.text = mqttService.brightnessControlTopic
         motionDetectionTopicTf.text = mqttService.motionDetectionTopic
         userInterfaceStyleTopicTf.text = mqttService.userInterfaceStyleTopic
+        systemSoundTopicTf.text = mqttService.systemSoundTopic
         updateMqttStatus()
         mqttService.connectionStatusChangeBlock =  { [weak self]
             (status) in
@@ -94,7 +96,8 @@ class MenuViewController: UIViewController {
                       let navigateTopic = navigateTopicTf.text,
                       let brightnessTopic = brightnessControlTopicTf.text,
                       let motionDetectionTopic = motionDetectionTopicTf.text,
-                      let userInterfaceStyleTopic = userInterfaceStyleTopicTf.text else {
+                      let userInterfaceStyleTopic = userInterfaceStyleTopicTf.text,
+                      let systemSoundTopic = systemSoundTopicTf.text else {
                     return
                 }
                 
@@ -105,6 +108,7 @@ class MenuViewController: UIViewController {
                 mqttService.brightnessControlTopic = brightnessTopic
                 mqttService.motionDetectionTopic = motionDetectionTopic
                 mqttService.userInterfaceStyleTopic = userInterfaceStyleTopic
+                mqttService.systemSoundTopic = systemSoundTopic
                 mqttService.username = usernameTf.text
                 mqttService.password = passwordTf.text
                 mqttService.connectToServer()
@@ -121,7 +125,8 @@ class MenuViewController: UIViewController {
             ttsTopicTf.text!.isEmpty ||
             navigateTopicTf.text!.isEmpty ||
             motionDetectionTopicTf.text!.isEmpty ||
-            userInterfaceStyleTopicTf.text!.isEmpty {
+            userInterfaceStyleTopicTf.text!.isEmpty ||
+            systemSoundTopicTf.text!.isEmpty {
             return false
         }
         return true;

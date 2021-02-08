@@ -16,5 +16,6 @@ let navigateTopicKeyId = "NAVIGATE_TOPIC"
 let brightnessControlTopicKeyId = "BRIGHTNESS_CONTROL_TOPIC"
 let motionDetectionTopicKeyId = "MOTION_DETECTION_TOPIC"
 let userInterfaceStyleTopicKeyId = "USER_INTERFACE_STYLE_TOPIC"
+let systemSoundTopicKeyId = "SYSTEM_SOUND_TOPIC"
 let mqttMessageNotificationName = "MQTTMessageNotification"
 

@@ -27,6 +27,7 @@ class MQTTService {
             UserDefaults.standard.setValue("b_topic", forKey: brightnessControlTopicKeyId)
             UserDefaults.standard.setValue("motion_topic", forKey: motionDetectionTopicKeyId)
             UserDefaults.standard.setValue("ui_topic", forKey: userInterfaceStyleTopicKeyId)
+            UserDefaults.standard.setValue("system_sound_topic", forKey: systemSoundTopicKeyId)
         }
     }
     var host: String? {
@@ -101,6 +102,14 @@ class MQTTService {
         }
     }
     
+    var systemSoundTopic: String? {
+        get {
+            return UserDefaults.standard.string(forKey: systemSoundTopicKeyId);
+        } set(val) {
+            UserDefaults.standard.setValue(val, forKey: systemSoundTopicKeyId)
+        }
+    }
+    
     private let clientID = "CocoaMQTT-Matt-" + String(ProcessInfo().processIdentifier)
     
     private init() { }
@@ -113,7 +122,8 @@ class MQTTService {
               let _ = navigationTopic,
               let _ = brightnessControlTopic,
               let _ = motionDetectionTopic,
-              let _ = userInterfaceStyleTopic else {
+              let _ = userInterfaceStyleTopic,
+              let _ = systemSoundTopic else {
             return false
         }
         return true;
@@ -141,7 +151,8 @@ class MQTTService {
         guard let ttsTopic = ttsTopic,
               let navigationTopic = navigationTopic,
               let brightnessControlTopic = brightnessControlTopic,
-              let userInterfaceStyleTopic = userInterfaceStyleTopic else {
+              let userInterfaceStyleTopic = userInterfaceStyleTopic,
+              let systemSoundTopic = systemSoundTopic else {
             return
         }
         
@@ -149,6 +160,7 @@ class MQTTService {
         mqtt?.subscribe(navigationTopic, qos: CocoaMQTTQOS.qos1)
         mqtt?.subscribe(brightnessControlTopic, qos: CocoaMQTTQOS.qos1)
         mqtt?.subscribe(userInterfaceStyleTopic, qos: CocoaMQTTQOS.qos1)
+        mqtt?.subscribe(systemSoundTopic, qos: CocoaMQTTQOS.qos1)
     }
     
     // MARK: Public Function

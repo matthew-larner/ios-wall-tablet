@@ -8,6 +8,8 @@
 import Foundation
 import WebKit
 import AVKit
+import AVFoundation
+import MediaPlayer
 
 class HomeViewModel {
     
@@ -43,7 +45,8 @@ class HomeViewModel {
         guard let navigateTopic = MQTTService.shared.navigationTopic,
               let ttsTopic = MQTTService.shared.ttsTopic,
               let brightnessTopic = MQTTService.shared.brightnessControlTopic,
-              let userInterfaceStyleTopic = MQTTService.shared.userInterfaceStyleTopic else {
+              let userInterfaceStyleTopic = MQTTService.shared.userInterfaceStyleTopic,
+              let systemSoundTopic = MQTTService.shared.systemSoundTopic else {
             return
         }
         
@@ -68,6 +71,17 @@ class HomeViewModel {
             let isDarkMode = message == "dark"
             UIApplication.shared.connectedScenes.forEach { (scene: UIScene) in
                 (scene.delegate as? SceneDelegate)?.window?.overrideUserInterfaceStyle =  isDarkMode ? .dark : .light  //Just this one works on iPhone.
+            }
+        } else if topic == systemSoundTopic {
+            let data = message.data(using: .utf8)!
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options : .allowFragments) as? Dictionary<String,Any> {
+                    if let soundId = json["system_sound_id"] as? Int {
+                        playSound(soundId: soundId)
+                    }
+                }
+            } catch let error as NSError {
+                print(error.localizedDescription)
             }
         }
     }
@@ -94,13 +108,21 @@ class HomeViewModel {
         synthesizer.speak(utterance)
     }
     
+    func playSound(soundId: Int) {
+        AudioServicesPlayAlertSound(SystemSoundID(soundId))
+    }
+    
+    func setVolumeTo(volume: Float) {
+      (MPVolumeView().subviews.filter{NSStringFromClass($0.classForCoder) == "MPVolumeSlider"}.first as? UISlider)?.setValue(volume, animated: false)
+    }
+    
     func publishMessage(message: String, topic: String) {
         MQTTService.shared.publish(message:message, topic:topic)
     }
     
     func motionDetected(strenght: Float) {
         //At least detected a it a big motion
-        if strenght >= 0.1000 {
+        if strenght > 0.0 {
             publishMotionDetection()
         }
     }
