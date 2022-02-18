@@ -45,7 +45,7 @@ class HomeViewController: UIViewController {
     
     // MARK: Private Functions
     private func initialiseGpuImageMotionDetection() {
-        #if TARGET_IPHONE_SIMULATOR
+        #if arch(i386) || arch(x86_64)
             print("Simulator")
         #else
         DispatchQueue.main.async {
