@@ -156,11 +156,11 @@ class MQTTService {
             return
         }
         
-        mqtt?.subscribe(ttsTopic, qos: CocoaMQTTQOS.qos1)
-        mqtt?.subscribe(navigationTopic, qos: CocoaMQTTQOS.qos1)
-        mqtt?.subscribe(brightnessControlTopic, qos: CocoaMQTTQOS.qos1)
-        mqtt?.subscribe(userInterfaceStyleTopic, qos: CocoaMQTTQOS.qos1)
-        mqtt?.subscribe(systemSoundTopic, qos: CocoaMQTTQOS.qos1)
+        mqtt?.subscribe(ttsTopic, qos: .qos1)
+        mqtt?.subscribe(navigationTopic, qos: .qos1)
+        mqtt?.subscribe(brightnessControlTopic, qos: .qos1)
+        mqtt?.subscribe(userInterfaceStyleTopic, qos: .qos1)
+        mqtt?.subscribe(systemSoundTopic, qos: .qos1)
     }
     
     // MARK: Public Function
@@ -228,6 +228,16 @@ class MQTTService {
 
 // MARK: - CocoaMQTTDelegate
 extension MQTTService: CocoaMQTTDelegate {
+    func mqtt(_ mqtt: CocoaMQTT, didUnsubscribeTopics topics: [String]) {
+        print(#function)
+        print(topics)
+    }
+    
+    func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopics success: NSDictionary, failed: [String]) {
+        print(#function)
+        print(success)
+    }
+    
     func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
         print(#function)
         if ack == .accept {
@@ -251,17 +261,7 @@ extension MQTTService: CocoaMQTTDelegate {
         let name = NSNotification.Name(rawValue: mqttMessageNotificationName)
         NotificationCenter.default.post(name: name, object: self, userInfo: ["message": message.string!, "topic": message.topic])
     }
-    // deprecated!!! instead of `func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopic topics: [String])`
-    //func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopic topic: String)
-    func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopic topics: [String]) {
-        print(#function)
-        print(topics)
-    }
-    
-    func mqtt(_ mqtt: CocoaMQTT, didUnsubscribeTopic topic: String) {
-        print(#function)
-    }
-    
+
     func mqttDidPing(_ mqtt: CocoaMQTT) {
         print(#function)
     }
@@ -302,9 +302,5 @@ extension MQTTService: CocoaMQTTDelegate {
         if let connStatusChangeBlock = self.connectionStatusChangeBlock {
             connStatusChangeBlock(state)
         }
-    }
-    
-    func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopics success: NSDictionary, failed: [String]) {
-        print(#function)
     }
 }

@@ -73,9 +73,9 @@ class MenuViewController: UIViewController {
             statusLabel!.textColor = UIColor.systemRed
             saveButton.setTitle("Connect and Save", for: .normal)
         } else {
-            if status == .initial {
-                statusLabel!.text = "Disconnected"
-                statusLabel!.textColor = UIColor.systemRed
+            if status == .connecting {
+                statusLabel!.text = "Connecting.."
+                statusLabel!.textColor = UIColor.systemOrange
             } else {
                 statusLabel!.textColor = UIColor.systemOrange
                 statusLabel!.text = status.description
