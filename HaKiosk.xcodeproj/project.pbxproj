@@ -12,6 +12,26 @@
 		AC004BA225885E3500FB232B /* GPUImage.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC004B9925885E2500FB232B /* GPUImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AC004BA725885E4100FB232B /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC004B9925885E2500FB232B /* GPUImage.framework */; };
 		AC63FF22256927E3000FEEE4 /* UIVIewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC63FF21256927E3000FEEE4 /* UIVIewController+Extensions.swift */; };
+		AC64FE132890BF690092F086 /* app-icon@180x180.png in Resources */ = {isa = PBXBuildFile; fileRef = AC64FDFF2890BF660092F086 /* app-icon@180x180.png */; };
+		AC64FE142890BF690092F086 /* app-icon-iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = AC64FE002890BF660092F086 /* app-icon-iTunesArtwork.png */; };
+		AC64FE152890BF690092F086 /* app-icon@66x66.png in Resources */ = {isa = PBXBuildFile; fileRef = AC64FE012890BF660092F086 /* app-icon@66x66.png */; };
+		AC64FE162890BF690092F086 /* app-icon@25x25.png in Resources */ = {isa = PBXBuildFile; fileRef = AC64FE022890BF670092F086 /* app-icon@25x25.png */; };
+		AC64FE172890BF690092F086 /* app-icon@76x76.png in Resources */ = {isa = PBXBuildFile; fileRef = AC64FE032890BF670092F086 /* app-icon@76x76.png */; };
+		AC64FE182890BF690092F086 /* icon.sketch in Resources */ = {isa = PBXBuildFile; fileRef = AC64FE042890BF670092F086 /* icon.sketch */; };
+		AC64FE192890BF690092F086 /* app-icon@58x58.png in Resources */ = {isa = PBXBuildFile; fileRef = AC64FE052890BF670092F086 /* app-icon@58x58.png */; };
+		AC64FE1A2890BF690092F086 /* app-icon@75x75.png in Resources */ = {isa = PBXBuildFile; fileRef = AC64FE062890BF670092F086 /* app-icon@75x75.png */; };
+		AC64FE1B2890BF690092F086 /* app-icon@152x152.png in Resources */ = {isa = PBXBuildFile; fileRef = AC64FE072890BF670092F086 /* app-icon@152x152.png */; };
+		AC64FE1C2890BF690092F086 /* app-icon@80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = AC64FE082890BF670092F086 /* app-icon@80x80.png */; };
+		AC64FE1D2890BF690092F086 /* app-icon@29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = AC64FE092890BF680092F086 /* app-icon@29x29.png */; };
+		AC64FE1E2890BF690092F086 /* app-icon@167x167.png in Resources */ = {isa = PBXBuildFile; fileRef = AC64FE0A2890BF680092F086 /* app-icon@167x167.png */; };
+		AC64FE1F2890BF690092F086 /* app-icon@40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = AC64FE0B2890BF680092F086 /* app-icon@40x40.png */; };
+		AC64FE202890BF690092F086 /* app-icon@87x87.png in Resources */ = {isa = PBXBuildFile; fileRef = AC64FE0C2890BF680092F086 /* app-icon@87x87.png */; };
+		AC64FE212890BF690092F086 /* app-icon@60x60.png in Resources */ = {isa = PBXBuildFile; fileRef = AC64FE0D2890BF680092F086 /* app-icon@60x60.png */; };
+		AC64FE222890BF690092F086 /* app-icon@22x22.png in Resources */ = {isa = PBXBuildFile; fileRef = AC64FE0E2890BF680092F086 /* app-icon@22x22.png */; };
+		AC64FE232890BF690092F086 /* app-icon@50x50.png in Resources */ = {isa = PBXBuildFile; fileRef = AC64FE0F2890BF680092F086 /* app-icon@50x50.png */; };
+		AC64FE242890BF690092F086 /* app-icon@44x44.png in Resources */ = {isa = PBXBuildFile; fileRef = AC64FE102890BF680092F086 /* app-icon@44x44.png */; };
+		AC64FE252890BF690092F086 /* app-icon@20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = AC64FE112890BF680092F086 /* app-icon@20x20.png */; };
+		AC64FE262890BF690092F086 /* app-icon@120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = AC64FE122890BF690092F086 /* app-icon@120x120.png */; };
 		AC73A7402568DA76007B33F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC73A73F2568DA76007B33F6 /* AppDelegate.swift */; };
 		AC73A7422568DA76007B33F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC73A7412568DA76007B33F6 /* SceneDelegate.swift */; };
 		AC73A7442568DA76007B33F6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC73A7432568DA76007B33F6 /* HomeViewController.swift */; };
@@ -101,6 +121,26 @@
 		7A6A5AFBD6DEC7270E0C39B0 /* Pods-HaKiosk-HaKioskUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HaKiosk-HaKioskUITests.debug.xcconfig"; path = "Target Support Files/Pods-HaKiosk-HaKioskUITests/Pods-HaKiosk-HaKioskUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		AC004B8D25885E2500FB232B /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = ThirdPartyLib/GPUImage2/framework/GPUImage.xcodeproj; sourceTree = SOURCE_ROOT; };
 		AC63FF21256927E3000FEEE4 /* UIVIewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+Extensions.swift"; sourceTree = "<group>"; };
+		AC64FDFF2890BF660092F086 /* app-icon@180x180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@180x180.png"; sourceTree = "<group>"; };
+		AC64FE002890BF660092F086 /* app-icon-iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon-iTunesArtwork.png"; sourceTree = "<group>"; };
+		AC64FE012890BF660092F086 /* app-icon@66x66.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@66x66.png"; sourceTree = "<group>"; };
+		AC64FE022890BF670092F086 /* app-icon@25x25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@25x25.png"; sourceTree = "<group>"; };
+		AC64FE032890BF670092F086 /* app-icon@76x76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@76x76.png"; sourceTree = "<group>"; };
+		AC64FE042890BF670092F086 /* icon.sketch */ = {isa = PBXFileReference; lastKnownFileType = file; path = icon.sketch; sourceTree = "<group>"; };
+		AC64FE052890BF670092F086 /* app-icon@58x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@58x58.png"; sourceTree = "<group>"; };
+		AC64FE062890BF670092F086 /* app-icon@75x75.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@75x75.png"; sourceTree = "<group>"; };
+		AC64FE072890BF670092F086 /* app-icon@152x152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@152x152.png"; sourceTree = "<group>"; };
+		AC64FE082890BF670092F086 /* app-icon@80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@80x80.png"; sourceTree = "<group>"; };
+		AC64FE092890BF680092F086 /* app-icon@29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@29x29.png"; sourceTree = "<group>"; };
+		AC64FE0A2890BF680092F086 /* app-icon@167x167.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@167x167.png"; sourceTree = "<group>"; };
+		AC64FE0B2890BF680092F086 /* app-icon@40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@40x40.png"; sourceTree = "<group>"; };
+		AC64FE0C2890BF680092F086 /* app-icon@87x87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@87x87.png"; sourceTree = "<group>"; };
+		AC64FE0D2890BF680092F086 /* app-icon@60x60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@60x60.png"; sourceTree = "<group>"; };
+		AC64FE0E2890BF680092F086 /* app-icon@22x22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@22x22.png"; sourceTree = "<group>"; };
+		AC64FE0F2890BF680092F086 /* app-icon@50x50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@50x50.png"; sourceTree = "<group>"; };
+		AC64FE102890BF680092F086 /* app-icon@44x44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@44x44.png"; sourceTree = "<group>"; };
+		AC64FE112890BF680092F086 /* app-icon@20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@20x20.png"; sourceTree = "<group>"; };
+		AC64FE122890BF690092F086 /* app-icon@120x120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@120x120.png"; sourceTree = "<group>"; };
 		AC73A73C2568DA76007B33F6 /* HaKiosk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HaKiosk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC73A73F2568DA76007B33F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC73A7412568DA76007B33F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -205,6 +245,41 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		AC64FDFD2890BF4A0092F086 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AC64FDFE2890BF520092F086 /* App Icon */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AC64FDFE2890BF520092F086 /* App Icon */ = {
+			isa = PBXGroup;
+			children = (
+				AC64FE002890BF660092F086 /* app-icon-iTunesArtwork.png */,
+				AC64FE112890BF680092F086 /* app-icon@20x20.png */,
+				AC64FE0E2890BF680092F086 /* app-icon@22x22.png */,
+				AC64FE022890BF670092F086 /* app-icon@25x25.png */,
+				AC64FE092890BF680092F086 /* app-icon@29x29.png */,
+				AC64FE0B2890BF680092F086 /* app-icon@40x40.png */,
+				AC64FE102890BF680092F086 /* app-icon@44x44.png */,
+				AC64FE0F2890BF680092F086 /* app-icon@50x50.png */,
+				AC64FE052890BF670092F086 /* app-icon@58x58.png */,
+				AC64FE0D2890BF680092F086 /* app-icon@60x60.png */,
+				AC64FE012890BF660092F086 /* app-icon@66x66.png */,
+				AC64FE062890BF670092F086 /* app-icon@75x75.png */,
+				AC64FE032890BF670092F086 /* app-icon@76x76.png */,
+				AC64FE082890BF670092F086 /* app-icon@80x80.png */,
+				AC64FE0C2890BF680092F086 /* app-icon@87x87.png */,
+				AC64FE122890BF690092F086 /* app-icon@120x120.png */,
+				AC64FE072890BF670092F086 /* app-icon@152x152.png */,
+				AC64FE0A2890BF680092F086 /* app-icon@167x167.png */,
+				AC64FDFF2890BF660092F086 /* app-icon@180x180.png */,
+				AC64FE042890BF670092F086 /* icon.sketch */,
+			);
+			path = "App Icon";
+			sourceTree = "<group>";
+		};
 		AC73A7332568DA76007B33F6 = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +305,7 @@
 		AC73A73E2568DA76007B33F6 /* HaKiosk */ = {
 			isa = PBXGroup;
 			children = (
+				AC64FDFD2890BF4A0092F086 /* Resources */,
 				AC004B8C25885DE600FB232B /* ThirdPartyLib */,
 				AC9B3A2D258739560016129A /* ViewModels */,
 				AC63FF20256927C6000FEEE4 /* Extensions */,
@@ -445,9 +521,29 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC64FE152890BF690092F086 /* app-icon@66x66.png in Resources */,
+				AC64FE162890BF690092F086 /* app-icon@25x25.png in Resources */,
+				AC64FE252890BF690092F086 /* app-icon@20x20.png in Resources */,
+				AC64FE232890BF690092F086 /* app-icon@50x50.png in Resources */,
+				AC64FE192890BF690092F086 /* app-icon@58x58.png in Resources */,
+				AC64FE262890BF690092F086 /* app-icon@120x120.png in Resources */,
+				AC64FE132890BF690092F086 /* app-icon@180x180.png in Resources */,
+				AC64FE1C2890BF690092F086 /* app-icon@80x80.png in Resources */,
+				AC64FE242890BF690092F086 /* app-icon@44x44.png in Resources */,
 				AC73A74C2568DA7C007B33F6 /* LaunchScreen.storyboard in Resources */,
+				AC64FE1E2890BF690092F086 /* app-icon@167x167.png in Resources */,
+				AC64FE142890BF690092F086 /* app-icon-iTunesArtwork.png in Resources */,
+				AC64FE222890BF690092F086 /* app-icon@22x22.png in Resources */,
+				AC64FE1B2890BF690092F086 /* app-icon@152x152.png in Resources */,
+				AC64FE1D2890BF690092F086 /* app-icon@29x29.png in Resources */,
 				AC73A7492568DA7C007B33F6 /* Assets.xcassets in Resources */,
+				AC64FE172890BF690092F086 /* app-icon@76x76.png in Resources */,
+				AC64FE1F2890BF690092F086 /* app-icon@40x40.png in Resources */,
 				AC73A7472568DA76007B33F6 /* Main.storyboard in Resources */,
+				AC64FE212890BF690092F086 /* app-icon@60x60.png in Resources */,
+				AC64FE182890BF690092F086 /* icon.sketch in Resources */,
+				AC64FE202890BF690092F086 /* app-icon@87x87.png in Resources */,
+				AC64FE1A2890BF690092F086 /* app-icon@75x75.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
