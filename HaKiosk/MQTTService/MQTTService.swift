@@ -28,6 +28,36 @@ class MQTTService {
             UserDefaults.standard.setValue("motion_topic", forKey: motionDetectionTopicKeyId)
             UserDefaults.standard.setValue("ui_topic", forKey: userInterfaceStyleTopicKeyId)
             UserDefaults.standard.setValue("system_sound_topic", forKey: systemSoundTopicKeyId)
+        } else {
+            
+            if UserDefaults.standard.integer(forKey: portKeyId) == 0 {
+                UserDefaults.standard.setValue(1883, forKey: portKeyId)
+            }
+            
+            if UserDefaults.standard.string(forKey: ttsTopicKeyId) == nil {
+                UserDefaults.standard.setValue("wall-tablet/1/tts", forKey: ttsTopicKeyId)
+            }
+            
+            if UserDefaults.standard.string(forKey: navigateTopicKeyId) == nil {
+                UserDefaults.standard.setValue("wall-tablet/1/navigate", forKey: navigateTopicKeyId)
+            }
+            
+            if UserDefaults.standard.string(forKey: brightnessControlTopicKeyId) == nil {
+                UserDefaults.standard.setValue("wall-tablet/1/brightness", forKey: brightnessControlTopicKeyId)
+            }
+            
+            if UserDefaults.standard.string(forKey: motionDetectionTopicKeyId) == nil {
+                UserDefaults.standard.setValue("wall-tablet/1/motion", forKey: motionDetectionTopicKeyId)
+            }
+            
+            if UserDefaults.standard.string(forKey: userInterfaceStyleTopicKeyId) == nil {
+                UserDefaults.standard.setValue("wall-tablet/1/appearance", forKey: userInterfaceStyleTopicKeyId)
+            }
+            
+            if UserDefaults.standard.string(forKey: systemSoundTopicKeyId) == nil {
+                UserDefaults.standard.setValue("wall-tablet/1/sound", forKey: systemSoundTopicKeyId)
+            }
+            
         }
     }
     var host: String? {
