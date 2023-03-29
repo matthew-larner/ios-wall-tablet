@@ -17,6 +17,11 @@ class HomeViewModel {
     var motionDetectionInterval = 10.0
     var timer: Timer?
     
+    ///https://developer.apple.com/forums/thread/712809
+    ///Moved the declaration of AVSpeechSynthesizer outside the function
+    ///issue is iOS16 and later
+    let synthesizer = AVSpeechSynthesizer()
+    
     var webView: WKWebView! {
         didSet {
             webView.configuration.userContentController.addUserScript(getZoomDisableScript())
@@ -101,7 +106,6 @@ class HomeViewModel {
     }
     
     func readMessage(message: String, voice: String, volume: Float = 1.0) {
-        let synthesizer = AVSpeechSynthesizer()
         let utterance = AVSpeechUtterance(string: message)
         utterance.voice = AVSpeechSynthesisVoice(language: voice)
         utterance.volume = volume
