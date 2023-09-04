@@ -160,6 +160,7 @@
 		AC73A7B525691284007B33F6 /* MQTTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTService.swift; sourceTree = "<group>"; };
 		AC73A7BE25691458007B33F6 /* Contants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contants.swift; sourceTree = "<group>"; };
 		AC9B3A312587396F0016129A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		ACC35D872890F5DC00A7F960 /* HaKiosk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HaKiosk.entitlements; sourceTree = "<group>"; };
 		CD09FABEDAD67F78DC294CDC /* Pods_HaKioskTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HaKioskTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7362563BC335A2DF4B1C3E3 /* Pods_HaKiosk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HaKiosk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF0527F4042FA67D1AA67FAD /* Pods-HaKioskTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HaKioskTests.release.xcconfig"; path = "Target Support Files/Pods-HaKioskTests/Pods-HaKioskTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -305,6 +306,7 @@
 		AC73A73E2568DA76007B33F6 /* HaKiosk */ = {
 			isa = PBXGroup;
 			children = (
+				ACC35D872890F5DC00A7F960 /* HaKiosk.entitlements */,
 				AC64FDFD2890BF4A0092F086 /* Resources */,
 				AC004B8C25885DE600FB232B /* ThirdPartyLib */,
 				AC9B3A2D258739560016129A /* ViewModels */,
@@ -861,20 +863,24 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = HaKiosk/HaKiosk.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 59P6MWQV2P;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 59P6MWQV2P;
 				INFOPLIST_FILE = HaKiosk/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.digitalvision.mqttkiosk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "MQTT Kiosk - Prod Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "HAKiosk-DigitalVisio-Adhoc";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "HAKiosk-DigitalVisio-Adhoc";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -886,20 +892,24 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = HaKiosk/HaKiosk.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 59P6MWQV2P;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 59P6MWQV2P;
 				INFOPLIST_FILE = HaKiosk/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.digitalvision.mqttkiosk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "MQTT Kiosk - Prod Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "HAKiosk-DigitalVisio-Adhoc";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "HAKiosk-DigitalVisio-Adhoc";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
