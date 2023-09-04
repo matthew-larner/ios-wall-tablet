@@ -7,7 +7,6 @@
 
 import Foundation
 import CocoaMQTT
-import CocoaAsyncSocket
 
 class MQTTService {
     
