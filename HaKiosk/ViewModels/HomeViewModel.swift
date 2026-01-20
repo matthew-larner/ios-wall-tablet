@@ -9,7 +9,6 @@ import Foundation
 import WebKit
 import AVKit
 import AVFoundation
-import MediaPlayer
 
 class HomeViewModel {
     
@@ -64,8 +63,8 @@ class HomeViewModel {
                 if let json = try JSONSerialization.jsonObject(with: data, options : .allowFragments) as? Dictionary<String,Any> {
                     let message = json["message"] as! String
                     let voice = json["voice"] as! String
-                    let vol = json["volume"] as! String
-                    readMessage(message: message, voice: voice, volume: Float(vol) ?? 1.0)
+                    let volume = parseVolume(from: json, defaultValue: 1.0)
+                    readMessage(message: message, voice: voice, volume: volume)
                 }
             } catch let error as NSError {
                 print(error.localizedDescription)
@@ -106,18 +105,34 @@ class HomeViewModel {
     }
     
     func readMessage(message: String, voice: String, volume: Float = 1.0) {
+        activateAudioSession()
         let utterance = AVSpeechUtterance(string: message)
         utterance.voice = AVSpeechSynthesisVoice(language: voice)
         utterance.volume = volume
         synthesizer.speak(utterance)
     }
-    
+
+    private func parseVolume(from json: Dictionary<String, Any>, defaultValue: Float) -> Float {
+        if let vol = json["volume"] as? String {
+            return Float(vol) ?? defaultValue
+        } else if let vol = json["volume"] as? NSNumber {
+            return vol.floatValue
+        }
+        return defaultValue
+    }
+
     func playSound(soundId: Int) {
+        activateAudioSession()
         AudioServicesPlayAlertSound(SystemSoundID(soundId))
     }
-    
-    func setVolumeTo(volume: Float) {
-      (MPVolumeView().subviews.filter{NSStringFromClass($0.classForCoder) == "MPVolumeSlider"}.first as? UISlider)?.setValue(volume, animated: false)
+
+    private func activateAudioSession() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.duckOthers])
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print("Failed to activate audio session: \(error)")
+        }
     }
     
     func publishMessage(message: String, topic: String) {

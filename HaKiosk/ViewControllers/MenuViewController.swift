@@ -27,7 +27,10 @@ class MenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
+        hostTf.spellCheckingType = .no
+        hostTf.autocorrectionType = .no
+
         hostTf.text = mqttService.host
         if let port =  mqttService.port {
             portTf.text = String(port)

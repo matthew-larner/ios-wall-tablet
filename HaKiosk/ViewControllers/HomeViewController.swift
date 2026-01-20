@@ -10,10 +10,10 @@ import WebKit
 import GPUImage
 
 class HomeViewController: UIViewController {
-    
+
     var activityIndicatorView = UIActivityIndicatorView()
     var homeViewModel = HomeViewModel()
-    
+
     private lazy var webView: WKWebView = {
         let webConfiguration = WKWebViewConfiguration()
         let webView = WKWebView(frame: .zero, configuration: webConfiguration)
@@ -25,12 +25,12 @@ class HomeViewController: UIViewController {
         webView.scrollView.bounces = false
         return webView
     }()
-    
+
     private lazy var motionRenderView: RenderView = {
         let renderView = RenderView(frame: UIScreen.main.bounds)
         return renderView
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -38,15 +38,15 @@ class HomeViewController: UIViewController {
         addNotificationObservers()
         homeViewModel.webView = webView
     }
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
     }
-    
+
     // MARK: Private Functions
     private func initialiseGpuImageMotionDetection() {
-        #if arch(i386) || arch(x86_64)
-            print("Simulator")
+        #if targetEnvironment(simulator)
+            print("Simulator - skipping camera initialization")
         #else
         DispatchQueue.main.async {
             do {
@@ -59,14 +59,12 @@ class HomeViewController: UIViewController {
                     self.homeViewModel.motionDetected(strenght: f)
                 }
             } catch {
-                fatalError("Could not initialize rendering pipeline: \(error)")
+                print("Could not initialize rendering pipeline: \(error)")
             }
         }
-        
         #endif
-        
     }
-    
+
     private func addNotificationObservers() {
         let name = NSNotification.Name(rawValue: mqttMessageNotificationName)
         NotificationCenter.default.addObserver(self, selector: #selector(HomeViewController.receivedMessage(notification:)), name: name, object: nil)
@@ -77,7 +75,7 @@ class HomeViewController: UIViewController {
             }
         }
     }
-    
+
     private func setupUI() {
         self.view.backgroundColor = .white
         self.view.addSubview(motionRenderView)
@@ -92,7 +90,7 @@ class HomeViewController: UIViewController {
                     .constraint(equalTo: self.view.rightAnchor)
         ])
         motionRenderView.alpha = 0
-        
+
         self.view.addSubview(webView)
         NSLayoutConstraint.activate([
             webView.topAnchor
@@ -104,14 +102,14 @@ class HomeViewController: UIViewController {
             webView.rightAnchor
                     .constraint(equalTo: self.view.rightAnchor)
         ])
-      
+
         view.addSubview(activityIndicatorView);
         activityIndicatorView.center = self.view.center
         activityIndicatorView.hidesWhenStopped = true
         activityIndicatorView.style = UIActivityIndicatorView.Style.large
 
     }
-    
+
     private func showActivityIndicator(show: Bool) {
         if show {
             activityIndicatorView.startAnimating()
@@ -119,7 +117,7 @@ class HomeViewController: UIViewController {
             activityIndicatorView.stopAnimating()
         }
     }
-    
+
     // MARK: Actions
     @objc func receivedMessage(notification: NSNotification) {
         let userInfo = notification.userInfo as! [String: AnyObject]
@@ -127,13 +125,13 @@ class HomeViewController: UIViewController {
         let topic = userInfo["topic"] as! String
         homeViewModel.recievedMqttTopic(topic: topic, message: content)
     }
-    
+
     @objc func forwardAction() {
         if webView.canGoForward {
             webView.goForward()
         }
     }
-        
+
     @objc func backAction() {
         if webView.canGoBack {
             webView.goBack()
