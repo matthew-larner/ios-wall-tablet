@@ -11,15 +11,15 @@ import AVKit
 import AVFoundation
 
 class HomeViewModel {
-    
+
     var readyToSendMotionDection = false
     var motionDetectionInterval = 10.0
     var timer: Timer?
-    
+
     ///https://developer.apple.com/forums/thread/712809
     ///Moved the declaration of AVSpeechSynthesizer outside the function
     ///issue is iOS16 and later
-    let synthesizer = AVSpeechSynthesizer()
+    var synthesizer = AVSpeechSynthesizer()
     
     var webView: WKWebView! {
         didSet {
@@ -29,6 +29,44 @@ class HomeViewModel {
     
     init() {
         runTimer()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleAudioSessionInterruption),
+            name: AVAudioSession.interruptionNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleAudioRouteChange),
+            name: AVAudioSession.routeChangeNotification,
+            object: nil
+        )
+    }
+
+    @objc private func handleAudioSessionInterruption(notification: Notification) {
+        guard let info = notification.userInfo,
+              let typeValue = info[AVAudioSessionInterruptionTypeKey] as? UInt,
+              let type = AVAudioSession.InterruptionType(rawValue: typeValue) else { return }
+
+        if type == .ended {
+            activateAudioSession()
+            // Recreate synthesizer — it can get stuck after an interruption
+            synthesizer = AVSpeechSynthesizer()
+        }
+    }
+
+    // Bluetooth/headphone connect-disconnect can also break the synthesizer
+    @objc private func handleAudioRouteChange(notification: Notification) {
+        guard let info = notification.userInfo,
+              let reasonValue = info[AVAudioSessionRouteChangeReasonKey] as? UInt,
+              let reason = AVAudioSession.RouteChangeReason(rawValue: reasonValue) else { return }
+
+        switch reason {
+        case .oldDeviceUnavailable, .newDeviceAvailable:
+            synthesizer = AVSpeechSynthesizer()
+        default:
+            break
+        }
     }
     
     private func runTimer() {
@@ -105,11 +143,13 @@ class HomeViewModel {
     }
     
     func readMessage(message: String, voice: String, volume: Float = 1.0) {
-        activateAudioSession()
-        let utterance = AVSpeechUtterance(string: message)
-        utterance.voice = AVSpeechSynthesisVoice(language: voice)
-        utterance.volume = volume
-        synthesizer.speak(utterance)
+        DispatchQueue.main.async {
+            self.activateAudioSession()
+            let utterance = AVSpeechUtterance(string: message)
+            utterance.voice = AVSpeechSynthesisVoice(language: voice)
+            utterance.volume = volume
+            self.synthesizer.speak(utterance)
+        }
     }
 
     private func parseVolume(from json: Dictionary<String, Any>, defaultValue: Float) -> Float {
