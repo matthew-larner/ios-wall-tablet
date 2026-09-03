@@ -21,9 +21,23 @@ class HomeViewModel: NSObject {
     ///issue is iOS16 and later
     var synthesizer = AVSpeechSynthesizer()
 
-    /// Set by the didStart delegate callback; the speak watchdog checks it to
-    /// detect a synthesizer that has gone silently dead.
-    private var speechStarted = false
+    /// Utterances handed to the synthesizer that have not yet started.
+    /// The watchdog uses this to detect a synthesizer that has gone silently dead.
+    private struct PendingSpeech {
+        let message: String
+        let voice: String
+        let volume: Float
+        let isRetry: Bool
+        let order: Int
+    }
+    private var pendingSpeech: [ObjectIdentifier: PendingSpeech] = [:]
+    private var speechCounter = 0
+
+    /// Last time the synthesizer reported any progress (start, word range,
+    /// finish, cancel). A synthesizer that claims to be speaking but reports no
+    /// progress for `speechStallTimeout` is treated as wedged.
+    private var lastSpeechActivity = Date.distantPast
+    private let speechStallTimeout: TimeInterval = 3.0
 
     var webView: WKWebView! {
         didSet {
@@ -82,9 +96,12 @@ class HomeViewModel: NSObject {
     }
 
     private func recreateSynthesizer() {
+        synthesizer.delegate = nil
         synthesizer.stopSpeaking(at: .immediate)
         synthesizer = AVSpeechSynthesizer()
         synthesizer.delegate = self
+        pendingSpeech.removeAll()
+        lastSpeechActivity = Date.distantPast
     }
     
     private func runTimer() {
@@ -181,18 +198,37 @@ class HomeViewModel: NSObject {
         }
         utterance.volume = volume
 
-        let wasSpeaking = synthesizer.isSpeaking
-        speechStarted = false
+        speechCounter += 1
+        pendingSpeech[ObjectIdentifier(utterance)] = PendingSpeech(message: message, voice: voice, volume: volume, isRetry: isRetry, order: speechCounter)
         synthesizer.speak(utterance)
+        scheduleSpeechWatchdog(for: utterance)
+    }
 
-        // If the synthesizer was already speaking, this utterance is queued and
-        // a delayed start is normal — only watchdog an idle synthesizer.
-        guard !wasSpeaking, !isRetry else { return }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { [weak self] in
-            guard let self = self, !self.speechStarted else { return }
-            print("TTS watchdog: speech never started; recreating synthesizer and retrying")
+    /// Checks that `utterance` starts within `speechStallTimeout`. If the
+    /// synthesizer is busy with an earlier utterance that is still making
+    /// progress, the check is deferred; otherwise the synthesizer is treated as
+    /// dead, recreated, and every pending utterance is replayed once.
+    private func scheduleSpeechWatchdog(for utterance: AVSpeechUtterance) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + speechStallTimeout) { [weak self] in
+            guard let self = self else { return }
+            let id = ObjectIdentifier(utterance)
+            guard let pending = self.pendingSpeech[id] else { return } // already started or cancelled
+
+            if Date().timeIntervalSince(self.lastSpeechActivity) < self.speechStallTimeout {
+                // Something else is genuinely speaking; this one is queued behind it.
+                self.scheduleSpeechWatchdog(for: utterance)
+                return
+            }
+
+            print("TTS watchdog: synthesizer stalled (isSpeaking=\(self.synthesizer.isSpeaking)); recreating and retrying")
+            let toRetry = self.pendingSpeech.values.filter { !$0.isRetry }.sorted { $0.order < $1.order }
             self.recreateSynthesizer()
-            self.speak(message: message, voice: voice, volume: volume, isRetry: true)
+            if toRetry.isEmpty {
+                print("TTS watchdog: retry already failed for '\(pending.message)', giving up on it")
+            }
+            for item in toRetry {
+                self.speak(message: item.message, voice: item.voice, volume: item.volume, isRetry: true)
+            }
         }
     }
 
@@ -243,6 +279,21 @@ class HomeViewModel: NSObject {
 // MARK: - AVSpeechSynthesizerDelegate
 extension HomeViewModel: AVSpeechSynthesizerDelegate {
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
-        speechStarted = true
+        pendingSpeech.removeValue(forKey: ObjectIdentifier(utterance))
+        lastSpeechActivity = Date()
+    }
+
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, willSpeakRangeOfSpeechString characterRange: NSRange, utterance: AVSpeechUtterance) {
+        lastSpeechActivity = Date()
+    }
+
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        pendingSpeech.removeValue(forKey: ObjectIdentifier(utterance))
+        lastSpeechActivity = Date()
+    }
+
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
+        pendingSpeech.removeValue(forKey: ObjectIdentifier(utterance))
+        lastSpeechActivity = Date()
     }
 }
