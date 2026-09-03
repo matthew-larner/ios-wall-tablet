@@ -14,7 +14,13 @@ class MQTTService {
     var errorBlock: ((_ error: Error) -> ())?
     var connectionSuccessBlock: ((_ status: Bool) -> ())?
     var connectionStatusChangeBlock: ((_ status: CocoaMQTTConnState) -> ())?
-    
+
+    /// Set to true by disconnectToServer() so the watchdog doesn't fight a
+    /// deliberate disconnect from the settings screen.
+    private var userRequestedDisconnect = false
+    private var watchdogTimer: Timer?
+    private let connectTimeout: TimeInterval = 30
+
     static let shared = MQTTService(debug: false)
 
     init(debug: Bool) {
@@ -171,8 +177,23 @@ class MQTTService {
             mqtt!.keepAlive = 10
             mqtt!.delegate = self
             mqtt!.autoReconnect = true
-            
-            _ = mqtt!.connect()
+
+            _ = mqtt!.connect(timeout: connectTimeout)
+        }
+    }
+
+    /// CocoaMQTT's autoReconnect permanently disables itself if the broker
+    /// rejects a CONNACK (e.g. Mosquitto restarting during an HA update), so
+    /// an app-level watchdog is the only reliable way back to connected.
+    func startWatchdog() {
+        guard watchdogTimer == nil else { return }
+        watchdogTimer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { [weak self] _ in
+            guard let self = self, !self.userRequestedDisconnect else { return }
+            let state = self.status()
+            if state != .connected && state != .connecting {
+                print("MQTT watchdog: state is \(state.description), reconnecting")
+                self.connectToServer()
+            }
         }
     }
     
@@ -197,29 +218,33 @@ class MQTTService {
         guard let mqtt = self.mqtt else {
             return
         }
-        
+
+        userRequestedDisconnect = true
         mqtt.disconnect()
     }
-    
+
     func connectToServer() {
+        userRequestedDisconnect = false
+        startWatchdog()
+
         guard let mqtt = self.mqtt else {
             initialiseMqtt()
             return
         }
-        
+
         if mqtt.connState == .connecting {
             return
         }
-        
+
         if isMqttConnected() {
             mqtt.disconnect()
         }
-        
+
         guard let host = host,
               let port = port else {
             return
         }
-        
+
         if hasMqttRequiredFields() {
             mqtt.keepAlive = 10
             mqtt.port = UInt16(port)
@@ -227,9 +252,9 @@ class MQTTService {
             mqtt.username = username
             mqtt.password = password
             mqtt.autoReconnect = true
-            _ = mqtt.connect()
+            _ = mqtt.connect(timeout: connectTimeout)
         }
-        
+
     }
     
     func isMqttConnected() -> Bool {
@@ -274,6 +299,13 @@ extension MQTTService: CocoaMQTTDelegate {
                 connectionSuccessBlock(true)
             }
             subscribeToTopics()
+        } else {
+            // A rejected CONNACK disables CocoaMQTT's autoReconnect until the
+            // next successful connect; the watchdog will retry from here.
+            print("MQTT connection rejected: \(ack)")
+            if let connectionSuccessBlock = self.connectionSuccessBlock {
+                connectionSuccessBlock(false)
+            }
         }
     }
     
@@ -287,8 +319,12 @@ extension MQTTService: CocoaMQTTDelegate {
     
     func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16 ) {
         print(#function)
+        guard let messageString = message.string else {
+            print("Ignoring non-UTF8 payload on topic \(message.topic)")
+            return
+        }
         let name = NSNotification.Name(rawValue: mqttMessageNotificationName)
-        NotificationCenter.default.post(name: name, object: self, userInfo: ["message": message.string!, "topic": message.topic])
+        NotificationCenter.default.post(name: name, object: self, userInfo: ["message": messageString, "topic": message.topic])
     }
 
     func mqttDidPing(_ mqtt: CocoaMQTT) {
@@ -301,20 +337,16 @@ extension MQTTService: CocoaMQTTDelegate {
     
     func mqttDidDisconnect(_ mqtt: CocoaMQTT, withError err: Error?) {
         print(#function)
-   
-        if let error = err, let errorBlock = self.errorBlock {
-            if error.localizedDescription == "Socket closed by remote peer" {
-                connectToServer()
-            } else if error.localizedDescription == "Broken pipe" {
-                // No Operation need since it auto reconnects
-            } else {
-                errorBlock(error)
-            }
-        } else {
-            if let connectionSuccessBlock = self.connectionSuccessBlock {
-                connectionSuccessBlock(false)
-            }
+
+        if let error = err {
+            print("MQTT disconnected with error: \(error.localizedDescription)")
         }
+
+        if let connectionSuccessBlock = self.connectionSuccessBlock {
+            connectionSuccessBlock(false)
+        }
+        // No manual reconnect here: CocoaMQTT's autoReconnect handles socket
+        // errors, and the watchdog covers every case autoReconnect gives up on.
     }
     
     func mqtt(_ mqtt: CocoaMQTT, didReceive trust: SecTrust, completionHandler: @escaping (Bool) -> Void) {

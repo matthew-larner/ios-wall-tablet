@@ -37,10 +37,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
-        //if MQTTService.shared.status() != .connected {
-        //    MQTTService.shared.connectToServer();
-        //}
-        
+        if MQTTService.shared.status() != .connected {
+            MQTTService.shared.connectToServer()
+        }
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {

@@ -71,7 +71,7 @@ class HomeViewController: UIViewController {
         MQTTService.shared.errorBlock = {
             (error) in
             DispatchQueue.main.async {
-                self.showAlertView(title: "Error", message: error.localizedDescription)
+                self.showTransientAlert(title: "Connection Error", message: error.localizedDescription)
             }
         }
     }
@@ -120,9 +120,11 @@ class HomeViewController: UIViewController {
 
     // MARK: Actions
     @objc func receivedMessage(notification: NSNotification) {
-        let userInfo = notification.userInfo as! [String: AnyObject]
-        let content = userInfo["message"] as! String
-        let topic = userInfo["topic"] as! String
+        guard let userInfo = notification.userInfo,
+              let content = userInfo["message"] as? String,
+              let topic = userInfo["topic"] as? String else {
+            return
+        }
         homeViewModel.recievedMqttTopic(topic: topic, message: content)
     }
 
@@ -153,5 +155,11 @@ extension HomeViewController: WKUIDelegate, WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         showActivityIndicator(show: false)
+    }
+
+    // After long uptimes iOS reclaims the web content process, leaving a blank
+    // page; reload to recover the dashboard.
+    func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
+        webView.reload()
     }
 }
